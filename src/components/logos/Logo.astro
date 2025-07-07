@@ -1,0 +1,31 @@
+---
+import LogoSvg from "../../assets/logos/logo.svg";
+
+interface Props {
+  color?: string;
+  style?: Exclude<astroHTML.JSX.SVGAttributes["style"], string>;
+  variant?: "icon-only" | "filled";
+}
+
+const { color = "white", style, variant = "icon-only" } = Astro.props;
+---
+
+<figure
+  style={variant === "filled"
+    ? {
+        backgroundColor: color,
+        borderRadius: "100%",
+        padding: "8px",
+        ...style,
+      }
+    : undefined}
+>
+  <LogoSvg
+    style={{
+      fill: variant === "icon-only" ? color : "white",
+      marginLeft: variant === "icon-only" ? undefined : "1px",
+    }}
+    width="100%"
+    height="100%"
+  />
+</figure>
