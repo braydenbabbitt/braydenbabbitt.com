@@ -14,7 +14,8 @@ const {
   class: providedClass,
   fontSize = "inherit",
   hoverFillColor,
-  hoverFillColorGradient,
+  hoverBorderColor,
+  variant,
   ...props
 } = Astro.props;
 ---
@@ -31,7 +32,8 @@ const {
     iconOnly={iconOnly}
     fontSize={fontSize}
     hoverFillColor={hoverFillColor}
-    hoverFillColorGradient={hoverFillColorGradient}
+    hoverBorderColor={hoverBorderColor}
+    variant={variant}
   >
     <slot />
   </Button>

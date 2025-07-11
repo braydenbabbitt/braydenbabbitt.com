@@ -1,14 +1,15 @@
 ---
 import type { HTMLAttributes } from "astro/types";
-import { convertHexToRgb } from "../../utils";
+import { convertHexToRgb, getHighestColorContrast } from "../../utils";
 
 interface Props extends HTMLAttributes<"button"> {
   size?: number;
   iconOnly?: boolean;
   color?: string;
   fontSize?: string;
+  variant?: "fill-on-hover" | "default";
   hoverFillColor?: string;
-  hoverFillColorGradient?: string;
+  hoverBorderColor?: string;
 }
 
 const {
@@ -17,20 +18,28 @@ const {
   class: providedClass,
   color = "#FFFFFF",
   fontSize,
+  variant = "default",
   hoverFillColor: providedHoverFillColor,
-  hoverFillColorGradient: providedHoverFillColorGradient,
+  hoverBorderColor: providedHoverBorderColor,
   ...props
 } = Astro.props;
-// TODO: refactor this to just use a variant that does a normal background transition
 const hoverFillColor =
   providedHoverFillColor ||
   "rgba(var(--color_r), var(--color_g), var(--color_b), 0.1)";
-const hoverFillColorGradient =
-  providedHoverFillColorGradient ||
-  providedHoverFillColor ||
-  "linear-gradient(to top, var(--light-purple), transparent)";
+const hoverBorderColor =
+  providedHoverBorderColor ||
+  "rgba(var(--color_r), var(--color_g), var(--color_b), 0.3)";
+const hoverIconColor =
+  variant === "default"
+    ? "var(--light-purple)"
+    : providedHoverFillColor
+      ? getHighestColorContrast(["#fff", "#000"], providedHoverFillColor)
+      : "white";
 
 const colorRgb = convertHexToRgb(color);
+const providedHoverFillColorRGB = providedHoverFillColor
+  ? convertHexToRgb(providedHoverFillColor)
+  : undefined;
 ---
 
 <style
@@ -45,12 +54,16 @@ const colorRgb = convertHexToRgb(color);
     bg: "rgba(var(--color_r), var(--color_g), var(--color_b), 0.05)",
     bg_hover: hoverFillColor,
     border_color: "rgba(var(--color_r), var(--color_g), var(--color_b), 0.2)",
-    border_color_hover:
-      "rgba(var(--color_r), var(--color_g), var(--color_b), 0.3)",
+    border_color_hover: hoverBorderColor,
     border_width: "2px",
     font_size: fontSize || "var(--size)",
-    hover_fill_color_gradient: hoverFillColorGradient,
+    hover_fill_color_gradient:
+      "linear-gradient(to top, var(--light-purple), transparent)",
     hover_fill_opacity: providedHoverFillColor ? 1 : 0.15,
+    hover_icon_color: hoverIconColor,
+    shadow_color: providedHoverFillColorRGB
+      ? `rgba(${providedHoverFillColorRGB.r}, ${providedHoverFillColorRGB.g}, ${providedHoverFillColorRGB.b}, 0.1)`
+      : "rgba(var(--color_r), var(--color_g), var(--color_b), 0.1)",
   }}
 >
   button {
@@ -70,15 +83,18 @@ const colorRgb = convertHexToRgb(color);
 
   button:hover,
   button:focus {
-    box-shadow: 0 4px 4px
-      rgba(var(--color_r), var(--color_g), var(--color_b), 0.1);
+    box-shadow: 0 4px 4px var(--shadow_color);
     transform: translateY(calc(var(--shift) * -1));
     outline: none;
-    border-color: var(--light-purple);
-    color: var(--light-purple);
+    color: var(--hover_icon_color);
   }
 
-  button::before {
+  button.default:hover,
+  button.default:focus {
+    border-color: var(--light-purple);
+  }
+
+  button.default::before {
     position: absolute;
     top: 0;
     left: 0;
@@ -91,8 +107,8 @@ const colorRgb = convertHexToRgb(color);
     opacity: var(--hover_fill_opacity);
   }
 
-  button:hover::before,
-  button:focus::before {
+  button.default:hover::before,
+  button.default:focus::before {
     transform: translateY(calc(var(--shift) * -1));
   }
 
@@ -106,9 +122,18 @@ const colorRgb = convertHexToRgb(color);
   .icon-only:hover > svg {
     color: var(--light-purple);
   }
+
+  button.fill-on-hover:hover,
+  button.fill-on-hover:focus {
+    background-color: var(--bg_hover);
+    border-color: var(--border_color_hover);
+  }
 </style>
 <button
-  class:list={[providedClass, iconOnly ? "icon-only" : ""].filter(Boolean)}
+  class:list={[providedClass, iconOnly ? "icon-only" : "", variant].filter(
+    Boolean,
+  )}
+  onclick="this.blur()"
   {...props}
 >
   <slot />

@@ -3,41 +3,39 @@ import BaseHead from "../components/BaseHead.astro";
 import Logo from "../components/logos/Logo.astro";
 import { Icon } from "astro-icon/components";
 import LinkButton from "../components/buttons/LinkButton.astro";
+
+const LOGO_COLORS = {
+  linkedinBlue: "#0072b1",
+  linkedinBlueDark: "#00669f",
+  githubGray: "#0d1117",
+  githubGrayDark: "#090b10",
+};
 ---
 
 <html lang="en">
   <BaseHead titleExtension="Home" />
   <body>
-    <div
-      style={{
-        position: "absolute",
-        top: "0.5%",
-        left: "0.5%",
-        animationDelay: "2s",
-      }}
-      class="fade-in-up"
-    >
-      <Logo
-        variant="filled"
-        color="var(--purple)"
-        style={{
-          height: "25px",
-          width: "25px",
-          borderRadius: "15%",
-          boxShadow: "0 0 8px rgba(0, 0, 0, 0.5)",
-          padding: "5px",
-        }}
-      />
-    </div>
     <main
       style={{
         width: "fit-content",
         margin: "0 auto",
         display: "flex",
         flexDirection: "column",
+        alignItems: "center",
         gap: "3rem",
       }}
     >
+      <Logo
+        variant="filled"
+        color="var(--purple)"
+        style={{
+          height: "35px",
+          width: "35px",
+          borderRadius: "15%",
+          boxShadow: "0 0 8px rgba(0, 0, 0, 0.5)",
+          padding: "12px",
+        }}
+      />
       <section>
         <h1
           style={{
@@ -45,13 +43,16 @@ import LinkButton from "../components/buttons/LinkButton.astro";
             alignItems: "center",
             gap: "0.5rem",
             margin: "auto",
-            lineHeight: 1,
+            lineHeight: 1.2,
             color: "white",
             fontSize: "3rem",
             textTransform: "uppercase",
             letterSpacing: "0.2rem",
             fontWeight: "normal",
+            animationDelay: "0.3s",
+            textAlign: "center",
           }}
+          class="fade-in-up"
         >
           Brayden Babbitt
         </h1>
@@ -61,7 +62,7 @@ import LinkButton from "../components/buttons/LinkButton.astro";
           href="/projects"
           class="fade-in-up"
           fontSize="1.25rem"
-          style={{ animationDelay: "0.3s" }}
+          style={{ animationDelay: "0.6s" }}
           size={30}
         >
           Projects
@@ -83,7 +84,9 @@ import LinkButton from "../components/buttons/LinkButton.astro";
             style={{ animationDelay: "1.5s" }}
             iconOnly
             size={20}
-            hoverFillColor="var(--github-gray)"
+            variant="fill-on-hover"
+            hoverFillColor={LOGO_COLORS.githubGray}
+            hoverBorderColor={LOGO_COLORS.githubGrayDark}
           >
             <Icon name="streamline-logos:github-logo-2-solid" size="25px" />
           </LinkButton>
@@ -96,7 +99,9 @@ import LinkButton from "../components/buttons/LinkButton.astro";
             style={{ animationDelay: "1.8s" }}
             iconOnly
             size={20}
-            hoverFillColor="var(--github-gray)"
+            variant="fill-on-hover"
+            hoverFillColor={LOGO_COLORS.githubGray}
+            hoverBorderColor={LOGO_COLORS.githubGrayDark}
           >
             <Icon name="streamline-logos:github-logo-2-solid" size="25px" />
           </LinkButton>
@@ -109,6 +114,9 @@ import LinkButton from "../components/buttons/LinkButton.astro";
             style={{ animationDelay: "2.1s" }}
             iconOnly
             size={20}
+            variant="fill-on-hover"
+            hoverFillColor={LOGO_COLORS.linkedinBlue}
+            hoverBorderColor={LOGO_COLORS.linkedinBlueDark}
           >
             <Icon name="streamline-logos:linkedin-logo-block" size="25px" />
           </LinkButton>
