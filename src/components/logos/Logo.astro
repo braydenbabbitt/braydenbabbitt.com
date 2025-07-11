@@ -1,13 +1,14 @@
 ---
 import LogoSvg from "../../assets/logos/logo.svg";
+import type { HTMLAttributes } from "astro/types";
 
-interface Props {
+interface Props extends HTMLAttributes<"figure"> {
   color?: string;
   style?: Exclude<astroHTML.JSX.SVGAttributes["style"], string>;
   variant?: "icon-only" | "filled";
 }
 
-const { color = "white", style, variant = "icon-only" } = Astro.props;
+const { color = "white", style, variant = "icon-only", ...props } = Astro.props;
 ---
 
 <figure
@@ -19,6 +20,7 @@ const { color = "white", style, variant = "icon-only" } = Astro.props;
         ...style,
       }
     : undefined}
+  {...props}
 >
   <LogoSvg
     style={{

@@ -2,41 +2,40 @@
 import BaseHead from "../components/BaseHead.astro";
 import Logo from "../components/logos/Logo.astro";
 import { Icon } from "astro-icon/components";
+import LinkButton from "../components/buttons/LinkButton.astro";
+
+const LOGO_COLORS = {
+  linkedinBlue: "#0072b1",
+  linkedinBlueDark: "#00669f",
+  githubGray: "#0d1117",
+  githubGrayDark: "#090b10",
+};
 ---
 
 <html lang="en">
   <BaseHead titleExtension="Home" />
   <body>
-    <div
-      style={{
-        position: "absolute",
-        top: "0.5%",
-        left: "0.5%",
-        animationDelay: "2s",
-      }}
-      class="fade-in-up"
-    >
-      <Logo
-        variant="filled"
-        color="var(--purple)"
-        style={{
-          height: "25px",
-          width: "25px",
-          borderRadius: "15%",
-          boxShadow: "0 0 8px rgba(0, 0, 0, 0.5)",
-          padding: "5px",
-        }}
-      />
-    </div>
     <main
       style={{
         width: "fit-content",
         margin: "0 auto",
         display: "flex",
         flexDirection: "column",
-        gap: "1.5rem",
+        alignItems: "center",
+        gap: "3rem",
       }}
     >
+      <Logo
+        variant="filled"
+        color="var(--purple)"
+        style={{
+          height: "35px",
+          width: "35px",
+          borderRadius: "15%",
+          boxShadow: "0 0 8px rgba(0, 0, 0, 0.5)",
+          padding: "12px",
+        }}
+      />
       <section>
         <h1
           style={{
@@ -44,15 +43,31 @@ import { Icon } from "astro-icon/components";
             alignItems: "center",
             gap: "0.5rem",
             margin: "auto",
-            lineHeight: 1,
+            lineHeight: 1.2,
             color: "white",
-            fontSize: "2.5rem",
+            fontSize: "3rem",
+            textTransform: "uppercase",
+            letterSpacing: "0.2rem",
+            fontWeight: "normal",
+            animationDelay: "0.3s",
+            textAlign: "center",
           }}
+          class="fade-in-up"
         >
           Brayden Babbitt
         </h1>
       </section>
-      <div class="h-divider"></div>
+      <!-- <section> -->
+      <!--   <LinkButton -->
+      <!--     href="/projects" -->
+      <!--     class="fade-in-up" -->
+      <!--     fontSize="1.25rem" -->
+      <!--     style={{ animationDelay: "0.6s" }} -->
+      <!--     size={30} -->
+      <!--   > -->
+      <!--     Projects -->
+      <!--   </LinkButton> -->
+      <!-- </section> -->
       <section>
         <div
           style={{
@@ -60,82 +75,51 @@ import { Icon } from "astro-icon/components";
             gap: "10px",
           }}
         >
-          <a
+          <LinkButton
             href="https://github.com/braydenbabbitt"
             target="_blank"
             rel="noopener"
             title="Personal Github"
             class="fade-in-up"
-            style={{ animationDelay: "0.3s" }}
+            style={{ animationDelay: "0.6s" }}
+            iconOnly
+            size={20}
+            variant="fill-on-hover"
+            hoverFillColor={LOGO_COLORS.githubGray}
+            hoverBorderColor={LOGO_COLORS.githubGrayDark}
           >
-            <div
-              style={{
-                position: "relative",
-              }}
-            >
-              <Icon
-                name="streamline-logos:github-logo-2-solid"
-                color="white"
-                size="40px"
-              />
-              <img
-                src="https://avatars.githubusercontent.com/u/1495342?v=4"
-                style={{
-                  width: "18px",
-                  height: "18px",
-                  borderRadius: "100%",
-                  position: "absolute",
-                  bottom: 0,
-                  right: 0,
-                }}
-              />
-            </div>
-          </a>
-          <a
+            <Icon name="streamline-logos:github-logo-2-solid" size="25px" />
+          </LinkButton>
+          <LinkButton
             href="https://github.com/Haptic-Labs"
             target="_blank"
             rel="noopener"
-            title="Public Github (used for content creation)"
             class="fade-in-up"
-            style={{ animationDelay: "0.6s" }}
+            title="Public Github (used for content creation)"
+            style={{ animationDelay: "0.9s" }}
+            iconOnly
+            size={20}
+            variant="fill-on-hover"
+            hoverFillColor={LOGO_COLORS.githubGray}
+            hoverBorderColor={LOGO_COLORS.githubGrayDark}
           >
-            <div
-              style={{
-                position: "relative",
-              }}
-            >
-              <Icon
-                name="streamline-logos:github-logo-2-solid"
-                color="white"
-                size="40px"
-              />
-              <img
-                src="https://avatars.githubusercontent.com/u/142282855?s=200&v=4"
-                style={{
-                  width: "18px",
-                  height: "18px",
-                  borderRadius: "100%",
-                  position: "absolute",
-                  bottom: 0,
-                  right: 0,
-                }}
-              />
-            </div>
-          </a>
-          <a
+            <Icon name="streamline-logos:github-logo-2-solid" size="25px" />
+          </LinkButton>
+          <LinkButton
             href="https://linkedin.com/in/brayden-babbitt"
             target="_blank"
             rel="noopener"
             title="LinkedIn"
             class="fade-in-up"
-            style={{ animationDelay: "0.9s" }}
+            style={{ animationDelay: "1.2s" }}
+            iconOnly
+            size={20}
+            variant="fill-on-hover"
+            hoverFillColor={LOGO_COLORS.linkedinBlue}
+            hoverBorderColor={LOGO_COLORS.linkedinBlueDark}
           >
-            <Icon
-              name="streamline-logos:linkedin-logo-block"
-              color="white"
-              size="40px"
-            />
-          </a>
+            <Icon name="streamline-logos:linkedin-logo-block" size="25px" />
+          </LinkButton>
         </div>
       </section>
     </main>

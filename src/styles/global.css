@@ -4,6 +4,8 @@
   --purple: #6116dc;
   --dark-purple: #3d0e8b;
   --darkest-purple: #1f0746;
+  --lightest-purple: #f0e8fd;
+  --light-purple: #d1b9f8;
 }
 
 * {
@@ -11,7 +13,6 @@
   min-height: 0;
   min-width: 0;
   font-family: "Alata";
-  color: white;
 }
 
 body {
@@ -26,6 +27,7 @@ body {
     black 100%
   );
   gap: 20px;
+  color: white;
 }
 
 section {
@@ -78,4 +80,62 @@ section {
   to {
     opacity: 1;
   }
+}
+
+h2 {
+  font-weight: "normal";
+}
+
+a {
+  display: block;
+}
+
+.button-medium {
+  padding: 1rem 0.5rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-medium-square {
+  padding: 0.5rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-small {
+  padding: 0.25rem 0.25rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-small-square {
+  padding: 0.25rem;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-outline {
+  border: 1px solid white;
+  min-width: fit-content;
+  transition: background-color 0.15s ease-in-out;
+}
+
+.button-outline:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.interactable {
+  transition: background-color 0.15s ease-in-out;
+}
+
+.interactable:hover {
+  color: var(--lightest-purple);
 }
