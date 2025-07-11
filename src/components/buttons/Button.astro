@@ -1,0 +1,115 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import { convertHexToRgb } from "../../utils";
+
+interface Props extends HTMLAttributes<"button"> {
+  size?: number;
+  iconOnly?: boolean;
+  color?: string;
+  fontSize?: string;
+  hoverFillColor?: string;
+  hoverFillColorGradient?: string;
+}
+
+const {
+  size = 20,
+  iconOnly = false,
+  class: providedClass,
+  color = "#FFFFFF",
+  fontSize,
+  hoverFillColor: providedHoverFillColor,
+  hoverFillColorGradient: providedHoverFillColorGradient,
+  ...props
+} = Astro.props;
+// TODO: refactor this to just use a variant that does a normal background transition
+const hoverFillColor =
+  providedHoverFillColor ||
+  "rgba(var(--color_r), var(--color_g), var(--color_b), 0.1)";
+const hoverFillColorGradient =
+  providedHoverFillColorGradient ||
+  providedHoverFillColor ||
+  "linear-gradient(to top, var(--light-purple), transparent)";
+
+const colorRgb = convertHexToRgb(color);
+---
+
+<style
+  define:vars={{
+    size: `${size}px`,
+    px: `${Math.floor(size * 0.65)}px`,
+    py: `${Math.floor(size * 0.5)}px`,
+    shift: `${Math.floor(size * 0.1)}px`,
+    color_r: colorRgb.r,
+    color_g: colorRgb.g,
+    color_b: colorRgb.b,
+    bg: "rgba(var(--color_r), var(--color_g), var(--color_b), 0.05)",
+    bg_hover: hoverFillColor,
+    border_color: "rgba(var(--color_r), var(--color_g), var(--color_b), 0.2)",
+    border_color_hover:
+      "rgba(var(--color_r), var(--color_g), var(--color_b), 0.3)",
+    border_width: "2px",
+    font_size: fontSize || "var(--size)",
+    hover_fill_color_gradient: hoverFillColorGradient,
+    hover_fill_opacity: providedHoverFillColor ? 1 : 0.15,
+  }}
+>
+  button {
+    line-height: 1;
+    position: relative;
+    padding: var(--py) var(--px);
+    font-size: var(--font_size);
+    font-family: inherit;
+    border: var(--border_width) solid var(--border_color);
+    border-radius: 12px;
+    background-color: var(--bg);
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    overflow: hidden;
+    color: var(--lightest-purple);
+  }
+
+  button:hover,
+  button:focus {
+    box-shadow: 0 4px 4px
+      rgba(var(--color_r), var(--color_g), var(--color_b), 0.1);
+    transform: translateY(calc(var(--shift) * -1));
+    outline: none;
+    border-color: var(--light-purple);
+    color: var(--light-purple);
+  }
+
+  button::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: calc(100% + (var(--border_width) * 2));
+    width: 100%;
+    content: "";
+    transform: translateY(100%);
+    transition: transform 0.2s ease-in-out;
+    background: var(--hover_fill_color_gradient);
+    opacity: var(--hover_fill_opacity);
+  }
+
+  button:hover::before,
+  button:focus::before {
+    transform: translateY(calc(var(--shift) * -1));
+  }
+
+  .icon-only {
+    padding: var(--px);
+  }
+
+  .icon-only > svg {
+    color: var(--lightest-purple);
+  }
+  .icon-only:hover > svg {
+    color: var(--light-purple);
+  }
+</style>
+<button
+  class:list={[providedClass, iconOnly ? "icon-only" : ""].filter(Boolean)}
+  {...props}
+>
+  <slot />
+</button>
