@@ -31,12 +31,13 @@ const {
     background-color: var(--default-fill-color);
     display: flex;
     gap: 1rem;
+    max-width: 85vw;
   }
 
   .left-container {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 1.5rem;
     justify-content: space-between;
     max-width: 350px;
   }
@@ -68,6 +69,17 @@ const {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+  }
+
+  @media (width < 800px) {
+    .project-card {
+      flex-direction: column-reverse;
+    }
+
+    .image {
+      width: 100%;
+      height: auto;
+    }
   }
 </style>
 <div class:list={[className, "project-card"]} {...props}>
