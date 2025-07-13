@@ -6,6 +6,12 @@
   --darkest-purple: #1f0746;
   --lightest-purple: #f0e8fd;
   --light-purple: #d1b9f8;
+
+  --default-border-color: rgba(255, 255, 255, 0.2);
+  --default-hover-border-color: rgba(255, 255, 255, 0.3);
+  --default-border-width: 2px;
+  --default-fill-color: rgba(255, 255, 255, 0.05);
+  --default-hover-fill-color: rgba(255, 255, 255, 0.1);
 }
 
 * {
@@ -138,4 +144,13 @@ a {
 
 .interactable:hover {
   color: var(--lightest-purple);
+}
+
+h1 {
+  text-transform: uppercase;
+  letter-spacing: 0.2rem;
+  font-weight: normal;
+  font-size: 3rem;
+  color: white;
+  line-height: 1.2;
 }

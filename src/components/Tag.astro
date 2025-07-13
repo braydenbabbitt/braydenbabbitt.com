@@ -1,0 +1,29 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import type { TagName } from "../types";
+import { TAGS } from "../consts";
+import { getHighestColorContrast } from "../utils/get-highest-color-contrast";
+
+interface Props extends HTMLAttributes<"div"> {
+  tagName: TagName;
+}
+
+const { tagName, class: className, ...props } = Astro.props;
+const color = TAGS[tagName].color;
+const textColor = getHighestColorContrast(["#FFF", "#000"], color);
+---
+
+<style
+  define:vars={{
+    textColor,
+    backgroundColor: color,
+  }}
+>
+  .tag {
+    color: var(--textColor);
+    border-radius: 0.5rem;
+    padding: 0.25rem 0.5rem;
+    background-color: var(--backgroundColor);
+  }
+</style>
+<div class:list={["tag", className]} {...props}>{tagName}</div>
