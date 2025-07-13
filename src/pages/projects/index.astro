@@ -1,0 +1,41 @@
+---
+import Page from "../../layouts/Page.astro";
+import ProjectCard from "../../components/cards/ProjectCard.astro";
+import Logo from "../../components/logos/Logo.astro";
+---
+
+<Page
+  headProps={{ titleExtension: "Projects" }}
+  style={{
+    width: "fit-content",
+    margin: "0 auto",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    gap: "3rem",
+  }}
+>
+  <a href="/">
+    <Logo
+      variant="filled"
+      color="var(--purple)"
+      style={{
+        height: "35px",
+        width: "35px",
+        borderRadius: "15%",
+        boxShadow: "0 0 8px rgba(0, 0, 0, 0.5)",
+        padding: "12px",
+      }}
+    />
+  </a>
+  <h1>Projects</h1>
+  <ProjectCard
+    title="Modular Music"
+    description="Automation platform for creating and editing Spotify playlists"
+    imgSrc="/images/modular-music.webp"
+    tags={["React", "Typescript", "Postgres", "Deno", "Supabase", "Astro"]}
+    href="https://modularmusic.net"
+    class="fade-in-up"
+    style={{ animationDelay: "0.3s" }}
+  />
+</Page>

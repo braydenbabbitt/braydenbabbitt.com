@@ -1,0 +1,18 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import type { ComponentProps, HTMLAttributes } from "astro/types";
+
+interface Props extends HTMLAttributes<"main"> {
+  headProps: ComponentProps<typeof BaseHead>;
+}
+const { headProps, ...mainProps }: Props = Astro.props;
+---
+
+<html lang="en">
+  <BaseHead {...headProps} />
+  <body>
+    <main {...mainProps}>
+      <slot />
+    </main>
+  </body>
+</html>

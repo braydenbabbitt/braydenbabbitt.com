@@ -1,0 +1,85 @@
+---
+import type { HTMLAttributes } from "astro/types";
+import type { TagName } from "../../types";
+import Tag from "../Tag.astro";
+import LinkButton from "../buttons/LinkButton.astro";
+
+interface Props extends HTMLAttributes<"div"> {
+  title: string;
+  description: string;
+  imgSrc: string;
+  href: string;
+  tags: TagName[];
+}
+
+const {
+  title,
+  description,
+  imgSrc,
+  href,
+  tags,
+  class: className,
+  ...props
+} = Astro.props;
+---
+
+<style>
+  .project-card {
+    padding: 1rem;
+    border-radius: 0.75rem;
+    border: 2px solid var(--default-border-color);
+    background-color: var(--default-fill-color);
+    display: flex;
+    gap: 1rem;
+  }
+
+  .left-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: space-between;
+    max-width: 350px;
+  }
+
+  .text-container {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .title {
+    font-size: 1.5rem;
+  }
+
+  .description {
+    color: var(--lightest-purple);
+    font-family: "Arial";
+    font-size: 1rem;
+  }
+
+  .image {
+    border-radius: 0.5rem;
+    width: 400px;
+    height: 235px;
+    object-fit: cover;
+  }
+
+  .tags-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+</style>
+<div class:list={[className, "project-card"]} {...props}>
+  <div class="left-container">
+    <div class="text-container">
+      <h3 class="title">{title}</h3>
+      <p class="description">{description}</p>
+      <div class="tags-container">
+        {tags.map((tag) => <Tag tagName={tag} />)}
+      </div>
+    </div>
+    <LinkButton href={href} target="_blank">Check it out</LinkButton>
+  </div>
+  <img class="image" src={imgSrc} />
+</div>
