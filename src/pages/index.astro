@@ -6,6 +6,15 @@ import LinkButton from "../components/buttons/LinkButton.astro";
 import { LOGO_COLORS } from "../consts";
 ---
 
+<style>
+  @view-transition {
+    navigation: auto;
+  }
+
+  h1 {
+    view-transition-name: braydenbabbitt-name;
+  }
+</style>
 <Page
   style={{
     width: "fit-content",
