@@ -18,5 +18,8 @@ import LinkButton from "../components/buttons/LinkButton.astro";
   }}
 >
   <h1>Whoops! This page doesn't exist.</h1>
-  <LinkButton href="/">Return Home</LinkButton>
+  <div style={{ display: "flex", gap: "1rem" }}>
+    <LinkButton onclick="history.back()">Go Back</LinkButton>
+    <LinkButton href="/">Return Home</LinkButton>
+  </div>
 </Page>
