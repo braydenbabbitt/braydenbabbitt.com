@@ -1,47 +1,82 @@
-# Astro Starter Kit: Minimal
+# Brayden Babbitt — Personal Website
 
-```sh
-pnpm create astro@latest -- --template minimal
+This is the personal website and portfolio for Brayden Babbitt. Built using [Astro](https://astro.build/) and deployed on Cloudflare, it showcases projects, provides links to social profiles, and serves as a central hub for personal and professional information.
+
+## Features
+
+- ✨ Clean, modern homepage
+- 🛠️ Project listings with tags and details
+- 🔗 Social links (GitHub, LinkedIn, etc.)
+- 🚀 Built with Astro and deployed to Cloudflare
+- 📱 Responsive and accessible design
+
+## Tech Stack
+
+- [Astro](https://astro.build/)
+- [Cloudflare](https://developers.cloudflare.com/workers/)
+- [React](https://react.dev/) (for some projects)
+- [TypeScript](https://www.typescriptlang.org/)
+- [MDX](https://mdxjs.com/), [RSS](https://www.rssboard.org/rss-specification), [Sitemap](https://www.sitemaps.org/)
+
+## Getting Started
+
+### Prerequisites
+
+- [pnpm](https://pnpm.io/) (or npm/yarn)
+- Node.js (v18+ recommended)
+
+### Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/braydenbabbitt/braydenbabbitt.com braydenbabbitt-com
+   cd braydenbabbitt-com
+   ```
+
+2. Install dependencies:
+
+   ```bash
+   pnpm install
+   ```
+
+### Development
+
+Start the local development server:
+
+```bash
+pnpm dev
 ```
 
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
+Visit [localhost:4321](http://localhost:4321) to view the site.
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+### Build
 
-## 🚀 Project Structure
+Create an optimized production build:
 
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```bash
+pnpm build
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+### Preview
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+Preview the production build locally:
 
-Any static assets, like images, can be placed in the `public/` directory.
+```bash
+pnpm preview
+```
 
-## 🧞 Commands
+## Deployment
 
-All commands are run from the root of the project, from a terminal:
+This repo is configured to deploy using Cloudflare Workers through their automated deployment integration. To deploy manually, you can use the following commands:
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `pnpm install`             | Installs dependencies                            |
-| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
-| `pnpm build`           | Build your production site to `./dist/`          |
-| `pnpm preview`         | Preview your build locally, before deploying     |
-| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+```bash
+pnpm run build
+npx wrangler pages deploy ./dist
+```
 
-## 👀 Want to learn more?
+Refer to [Cloudflare Workers documentation](https://developers.cloudflare.com/workers/) for more info.
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## License
+
+[MIT](./LICENSE)
