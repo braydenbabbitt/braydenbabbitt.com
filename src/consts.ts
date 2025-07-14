@@ -22,3 +22,10 @@ export const TAGS = {
     color: "#d83333",
   },
 } as const satisfies Record<string, { color: string }>;
+
+export const LOGO_COLORS = {
+  linkedinBlue: "#0072b1",
+  linkedinBlueDark: "#00669f",
+  githubGray: "#0d1117",
+  githubGrayDark: "#090b10",
+} as const;
