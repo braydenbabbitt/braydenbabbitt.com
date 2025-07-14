@@ -14,6 +14,12 @@ import { LOGO_COLORS } from "../consts";
   h1 {
     view-transition-name: braydenbabbitt-name;
   }
+
+  .pages-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
 </style>
 <Page
   style={{
@@ -55,15 +61,26 @@ import { LOGO_COLORS } from "../consts";
     </h1>
   </section>
   <section>
-    <LinkButton
-      href="/projects"
-      class="fade-in-up"
-      fontSize="1.25rem"
-      style={{ animationDelay: "0.6s" }}
-      size={30}
-    >
-      Projects
-    </LinkButton>
+    <div class="pages-container">
+      <LinkButton
+        href="/projects"
+        class="fade-in-up"
+        fontSize="1.25rem"
+        style={{ animationDelay: "0.6s" }}
+        size={30}
+      >
+        Projects
+      </LinkButton>
+      <LinkButton
+        href="/blog"
+        class="fade-in-up"
+        fontSize="1.25rem"
+        style={{ animationDelay: "0.9s" }}
+        size={30}
+      >
+        Blog
+      </LinkButton>
+    </div>
   </section>
   <section>
     <div
@@ -78,7 +95,7 @@ import { LOGO_COLORS } from "../consts";
         rel="noopener"
         title="Personal Github"
         class="fade-in-up"
-        style={{ animationDelay: "0.6s" }}
+        style={{ animationDelay: "1.2s" }}
         iconOnly
         size={20}
         variant="fill-on-hover"
@@ -93,7 +110,7 @@ import { LOGO_COLORS } from "../consts";
         rel="noopener"
         class="fade-in-up"
         title="Public Github (used for content creation)"
-        style={{ animationDelay: "0.9s" }}
+        style={{ animationDelay: "1.5s" }}
         iconOnly
         size={20}
         variant="fill-on-hover"
@@ -108,7 +125,7 @@ import { LOGO_COLORS } from "../consts";
         rel="noopener"
         title="LinkedIn"
         class="fade-in-up"
-        style={{ animationDelay: "1.2s" }}
+        style={{ animationDelay: "1.8s" }}
         iconOnly
         size={20}
         variant="fill-on-hover"
