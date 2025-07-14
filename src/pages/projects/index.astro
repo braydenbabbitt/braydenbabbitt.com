@@ -4,6 +4,15 @@ import ProjectCard from "../../components/cards/ProjectCard.astro";
 import Logo from "../../components/logos/Logo.astro";
 ---
 
+<style>
+  @view-transition {
+    navigation: auto;
+  }
+
+  h1 {
+    view-transition-name: page-title;
+  }
+</style>
 <Page
   headProps={{ titleExtension: "Projects" }}
   style={{
